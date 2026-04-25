@@ -3,17 +3,31 @@ package com.financialprocessingsystem.user.mapper;
 import com.financialprocessingsystem.user.dto.request.UserRequest;
 import com.financialprocessingsystem.user.dto.response.UserResponse;
 import com.financialprocessingsystem.user.model.User;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
-@Mapper(componentModel = "spring")
-public interface UserMapper {
+@Service
+@RequiredArgsConstructor
+public class UserMapper {
 
-    @Mapping(target = "password",
-            expression = "java(passwordEncoder.encode(userRequest.getPassword()))")
-    User toEntity(UserRequest userRequest, PasswordEncoder passwordEncoder);
+    private final PasswordEncoder passwordEncoder;
 
-    UserResponse toResponse(User user);
+    public User toUser(UserRequest userRequest) {
+        return User.builder()
+                .firstName(userRequest.getFirstName())
+                .lastName(userRequest.getLastName())
+                .email(userRequest.getEmail())
+                .password(passwordEncoder.encode(userRequest.getPassword()))
+                .build();
+    }
+
+   public UserResponse toResponse(User user) {
+        return UserResponse.builder()
+                .firstName(user.getFirstName())
+                .lastName(user.getLastName())
+                .email(user.getEmail())
+                .build();
+   }
 
 }

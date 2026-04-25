@@ -1,6 +1,7 @@
 package com.financialprocessingsystem.transaction.model;
 
 import com.financialprocessingsystem.common.AbstractEntity;
+import com.financialprocessingsystem.transaction.model.enums.TransactionType;
 import com.financialprocessingsystem.user.model.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

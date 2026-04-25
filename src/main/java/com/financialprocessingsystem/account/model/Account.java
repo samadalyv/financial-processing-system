@@ -24,4 +24,6 @@ public class Account extends AbstractEntity {
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    private boolean locked;
 }

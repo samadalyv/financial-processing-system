@@ -37,7 +37,7 @@ public class User extends AbstractEntity {
     @OneToMany(mappedBy = "user")
     private List<Contact> contacts;
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user",cascade = CascadeType.ALL)
     private Account account;
 
     @OneToMany(mappedBy = "user")
@@ -48,7 +48,7 @@ public class User extends AbstractEntity {
     private Role role;
 
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user",cascade = CascadeType.ALL)
     private Address address;
 
     public String fullName(){

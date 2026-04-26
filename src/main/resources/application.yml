@@ -12,7 +12,7 @@ spring:
 #  security:
 #    user:
 #      password: my-password
-#      name: ali
+#      name: samad
 
 #application:
 #  security:

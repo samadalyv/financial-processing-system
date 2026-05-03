@@ -1,0 +1,33 @@
+package com.financialprocessingsystem.contact.mapper;
+
+import com.financialprocessingsystem.contact.dto.request.ContactRequest;
+import com.financialprocessingsystem.contact.dto.response.ContactResponse;
+import com.financialprocessingsystem.contact.model.Contact;
+import org.springframework.stereotype.Service;
+
+@Service
+public class ContactMapper {
+
+    public Contact toContactEntity(ContactRequest contactRequest) {
+        return Contact.builder()
+                .firstName(contactRequest.getFirstName())
+                .lastName(contactRequest.getLastName())
+                .iban(contactRequest.getIban())
+                .build();
+    }
+
+    public void mergeContact(Contact existingContact, ContactRequest contactRequest) {
+        existingContact.setFirstName(contactRequest.getFirstName());
+        existingContact.setLastName(contactRequest.getLastName());
+        existingContact.setIban(contactRequest.getIban());
+    }
+
+    public ContactResponse toContactResponse(Contact c) {
+        return ContactResponse.builder()
+                .id(c.getId())
+                .firstName(c.getFirstName())
+                .lastName(c.getLastName())
+                .iban(c.getIban())
+                .build();
+    }
+}
